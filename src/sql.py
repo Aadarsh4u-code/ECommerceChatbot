@@ -73,7 +73,7 @@ def generate_sql_query(question):
         ],
         model=MODEL,
         temperature=0.2,
-        max_tokens=1024
+        max_tokens=524
     )
 
     return chat_completion.choices[0].message.content

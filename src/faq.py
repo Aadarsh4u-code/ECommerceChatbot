@@ -73,7 +73,7 @@ def generate_answer(query, context):
         }
         ],
         temperature=1,
-        max_completion_tokens=1024,
+        max_completion_tokens=524,
         top_p=1,
         stream=True,
         stop=None
