@@ -27,7 +27,7 @@ This solution drives engagement, improves customer satisfaction, and supports se
 3. **Performance Optimization & Testing** – High accuracy and minimal latency for real-time interactions.
 
 
-## 🛠️ Tech Stack
+# 🛠️ Tech Stack
 - **Language Model:** LLama3.3 LLM
 - **Frontend:** Streamlit (prototype)
 - **Databases:**
@@ -36,26 +36,47 @@ This solution drives engagement, improves customer satisfaction, and supports se
 - **Routing:** Semantic router
 
 
+# 📊 **Workflow**  
+1. **User Input (Streamlit UI)** – User types a query into the chatbot (e.g., “Do you accept cash on delivery?” or “Show me top Nike shoes under 80 with rating >4.3”).
+
+2. **Semantic Router** – Classifies the query type:
+    - FAQ – general queries (payment, return policy, etc.)
+    - Product – product search and filtering queries
+
+3. **FAQ Flow (RAG Retrieval)**
+    - Query sent to ChromaDB (vector database).
+    - Retrieves relevant answers from stored FAQs.
+    - LLM refines response → generates natural-language Answer.  
+
+4. **Product Flow (SQL Retrieval)**
+    - Query passed to LLM, which converts it into an SQL query
+    - SQL query executed on SQLite database (product catalog)
+    - Retrieved Records + Question are sent back to the LLM
+    - LLM composes a user-friendly Answer with product details
+
+5. **Response Delivery** – Final answer displayed in Streamlit UI, including links, product details, and recommendations.  
+
+
+# 🖥️ **Example Usage**  
+
+**Input:**  
+```  
+Q.1. What is the return policy of the products?
+Q.2. How do I use a promo code during checkout? 
+```  
+**Output:**  
+```  
+Answer 1: The return policy of the products is that you can return them within 30 days of delivery, and you need to contact the support team within 48 hours for a replacement or refund.
+Answer 2: To use a promo code during checkout, enter your promo code in the designated field..
+``` 
+
+
 ## ✅ Success Criteria
 - Fully functional chatbot capable of handling FAQs and product inquiries.
 - Accurate & efficient ingestion of FAQs into Chromadb.
 - Smooth integration with XYZ’s e-commerce website with minimal downtime.
 
 ---
-
-# 📂 Repository Structure (example)
-```
-.
-├── data/               # FAQ and product datasets
-├── notebooks/          # Experimentation and model testing
-├── src/                # Core chatbot code
-│   ├── ingestion/      # Scripts for FAQ data ingestion into Chromadb
-│   ├── routing/        # Semantic router logic
-│   └── frontend/       # Streamlit app
-├── tests/              # Unit and integration tests
-└── README.md           # Project documentation
-```
-
 
 # ▶️ Getting Started
 
