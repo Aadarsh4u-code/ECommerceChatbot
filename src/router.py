@@ -34,9 +34,10 @@ sql = Route(
     score_threshold=0.3
 )
 
-smalltalk = Route(
-    name="smalltalk",
+generaltalk = Route(
+    name="generaltalk",
     utterances=[
+        "Hi",
         "How are you?",
         "What is your name?",
         "What do you do?",
@@ -46,7 +47,7 @@ smalltalk = Route(
 )
 
 
-router = SemanticRouter(encoder=encoder, routes=[faqs, sql, smalltalk], auto_sync="local")
+router = SemanticRouter(encoder=encoder, routes=[faqs, sql, generaltalk], auto_sync="local")
 
 
 # if __name__ == "__main__":

@@ -4,6 +4,7 @@ __pycache__/
 *$py.class
 guidelines/
 ebot/
+web-scrapping
 
 # C extensions
 *.so

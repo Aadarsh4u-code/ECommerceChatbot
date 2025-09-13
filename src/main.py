@@ -1,8 +1,11 @@
 
 import streamlit as st
+from general_talk import generaltalk_chain
 from router import router
 from faq import ingest_faq_data, faq_chain
 from pathlib import Path
+
+from sql import sql_chain
 
 st.title("🏙️ E-Commerce Chatbot")
 
@@ -27,6 +30,10 @@ def ask_query(query):
     print("route", route)
     if route == "faqs":
         return faq_chain(query)
+    elif route == 'sql':
+        return sql_chain(query)
+    elif route == "generaltalk":
+        return generaltalk_chain(query)
     else:
         return f"Route {route} not implemented yet."
 
@@ -53,6 +60,6 @@ if user_input:
 
 
     response = ask_query(user_input)
-    with st.chat_message("assistance"):
-        st.text(response)
-    st.session_state['message_history'].append({'role': 'assistance', 'content': response})
+    with st.chat_message("assistant"):
+        st.markdown(response)
+    st.session_state['message_history'].append({'role': 'assistant', 'content': response})
